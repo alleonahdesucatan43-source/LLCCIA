@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LLCIA — LLCC Information Assistant</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <div class="logo">
+    <h2>LLCIA</h2>
+    <span>LLCC Information Assistant</span>
+  </div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#courses">Courses</a>
+    <a href="#admission">Admission</a>
+    <a href="#organizations">Organizations</a>
+    <a href="#events">Events</a>
+    <a href="#offices">Offices</a>
+    <a href="#documents">Documents</a>
+    <a href="#calendar">Calendar</a>
+    <a href="#faq">FAQ</a>
+    <a href="#campus">Campus</a>
+  </nav>
+</header>
+
+<div id="announcementBanner" class="announcement-banner"></div>
+
+<!-- Home Section -->
+<section id="home" class="hero">
+  <div class="hero-text">
+    <p class="small-title">LAPU-LAPU CITY COLLEGE</p>
+    <h1>Your LLCC Information, <span>One Question Away.</span></h1>
+    <p>Explore LLCC courses, admission requirements, student organizations, campus events, offices, and printable documents — all in one place.</p>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search LLCC information..." onkeypress="if(event.key==='Enter')searchInformation()" />
+      <button onclick="searchInformation()">Search</button>
+    </div>
+  </div>
+  <!-- Virtual Guide -->
+  <div class="virtual-guide">
+    <div class="guide-icon">🧑🎓</div>
+    <h2>Hi! I'm your LLCC Virtual Guide.</h2>
+    <p>I can help you explore LLCC information. Talk to LLCIA any time using the chat.</p>
+    <button onclick="openChat()">Talk to LLCIA</button>
+  </div>
+</section>
+
+<!-- Quick Access Section -->
+<section class="section">
+  <p class="eyebrow">Explore LLCC</p>
+  <h2>Find what you need, faster</h2>
+  <p class="lede">No more going from office to office — start here.</p>
+  <div class="card-grid">
+    <div class="info-card" onclick="showPrograms()">
+      <div class="icon">🎓</div>
+      <h3>Courses</h3>
+      <p>Explore LLCC courses, majors and specializations.</p>
+    </div>
+    <div class="info-card" onclick="showAdmission()">
+      <div class="icon">📝</div>
+      <h3>Admission</h3>
+      <p>Check admission and transferee requirements.</p>
+    </div>
+    <div class="info-card" onclick="showDocuments()">
+      <div class="icon">📄</div>
+      <h3>Documents</h3>
+      <p>View and print requirement forms and papers.</p>
+    </div>
+    <div class="info-card" onclick="showScholarship()">
+      <div class="icon">🏆</div>
+      <h3>Scholarship</h3>
+      <p>Check scholarship requirements.</p>
+    </div>
+    <div class="info-card" onclick="showRegistrar()">
+      <div class="icon">🏢</div>
+      <h3>Registrar</h3>
+      <p>Learn about Registrar procedures.</p>
+    </div>
+    <div class="info-card" onclick="showCampus()">
+      <div class="icon">🏫</div>
+      <h3>Campus</h3>
+      <p>Explore campus buildings and facilities.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Explore / Search -->
+<section id="explore" class="section">
+  <p class="eyebrow">Search Everything</p>
+  <h2>Explore all LLCC information</h2>
+  <p class="lede">Search across courses, admission, organizations, events, offices and documents.</p>
+  <div class="explore-search">
+    <input type="text" id="exploreInput" placeholder="Search courses, offices, organizations, documents..." onkeyup="exploreInformation()" />
+  </div>
+  <div id="informationResults" class="card-grid"></div>
+</section>
+
+<!-- Courses Section -->
+<section id="courses" class="section">
+  <p class="eyebrow">Academics</p>
+  <h2>Available Courses</h2>
+  <p class="lede">Programs and majors currently offered at LLCC.</p>
+  <div id="courseFilters" class="filter-row"></div>
+  <div id="coursesGrid" class="card-grid"></div>
+</section>
+
+<!-- Admission Section -->
+<section id="admission" class="section">
+  <p class="eyebrow">Get Started</p>
+  <h2>Admission & Student Guides</h2>
+  <p class="lede">Select your situation to get the right requirements.</p>
+  <div class="card-grid">
+    <div class="info-card">
+      <div class="icon">🧑🎓</div>
+      <h3>Incoming First Year</h3>
+      <p>Information about first-year admission, requirements and enrollment.</p>
+      <button onclick="askBot('What are the requirements for first year?')">Ask LLCIA</button>
+    </div>
+    <div class="info-card">
+      <div class="icon">🔄</div>
+      <h3>Transferee</h3>
+      <p>Information about transferring to LLCC.</p>
+      <button onclick="askBot('What are the requirements for transferees?')">Ask LLCIA</button>
+    </div>
+    <div class="info-card">
+      <div class="icon">📚</div>
+      <h3>Current Students</h3>
+      <p>Student portal, services, documents, events and school information.</p>
+      <button onclick="askBot('What information is available for current students?')">Ask LLCIA</button>
+    </div>
+    <div class="info-card">
+      <div class="icon">🎓</div>
+      <h3>Graduating Students</h3>
+      <p>Graduation requirements, clearance and important documents.</p>
+      <button onclick="askBot('What are the graduation requirements?')">Ask LLCIA</button>
+    </div>
+  </div>
+</section>
+
+<!-- Organizations Section -->
+<section id="organizations" class="section">
+  <p class="eyebrow">Get Involved</p>
+  <h2>Student Organizations</h2>
+  <p class="lede">Recognized student organizations at LLCC.</p>
+  <div id="orgFilters" class="filter-row"></div>
+  <div id="orgsGrid" class="card-grid"></div>
+</section>
+
+<!-- Events Section -->
+<section id="events" class="section">
+  <p class="eyebrow">Campus Life</p>
+  <h2>School Events</h2>
+  <p class="lede">Annual and recurring events across LLCC.</p>
+  <div id="eventFilters" class="filter-row"></div>
+  <div id="eventsGrid" class="card-grid"></div>
+</section>
+
+<!-- Offices Section -->
+<section id="offices" class="section">
+  <p class="eyebrow">Where To Go</p>
+  <h2>Offices Directory</h2>
+  <p class="lede">Know which office handles your concern before you line up.</p>
+  <div id="officesGrid" class="card-grid"></div>
+</section>
+
+<!-- Documents Section -->
+<section id="documents" class="section">
+  <p class="eyebrow">Document Center</p>
+  <h2>Printable Documents & Forms</h2>
+  <p class="lede">View requirements and print sample forms for scholarship, transferee, enrollment, student, and general requirement papers.</p>
+  <div id="documentFilters" class="filter-row"></div>
+  <div id="documentsGrid" class="card-grid"></div>
+</section>
+
+<!-- Calendar Section -->
+<section id="calendar" class="section">
+  <p class="eyebrow">Plan Ahead</p>
+  <h2>Academic Calendar</h2>
+  <p class="lede">Key dates for the school year. Confirm exact dates with the Registrar.</p>
+  <div id="calendarList" class="calendar-list"></div>
+</section>
+
+<!-- FAQ Section -->
+<section id="faq" class="section">
+  <p class="eyebrow">Quick Answers</p>
+  <h2>Frequently Asked Questions</h2>
+  <p class="lede">Common student concerns, answered directly.</p>
+  <div id="faqList" class="faq-list"></div>
+</section>
+
+<!-- Campus Section -->
+<section id="campus" class="section">
+  <p class="eyebrow">Around Campus</p>
+  <h2>Explore LLCC Campus</h2>
+  <p class="lede">Sample interactive campus map. The final version can use the AutoCAD campus model.</p>
+  <div class="campus-container">
+    <div class="campus-map">
+      <div class="road horizontal"></div>
+      <div class="road vertical"></div>
+      <button class="building building1" onclick="showBuilding('Main Building')">🏫<br>Main Building</button>
+      <button class="building building2" onclick="showBuilding('Computer Laboratory')">🖥️<br>Computer Laboratory</button>
+      <button class="building building3" onclick="showBuilding('Registrar')">🏢<br>Registrar</button>
+      <button class="building building4" onclick="showBuilding('Library')">📚<br>Library</button>
+      <button class="building building5" onclick="showBuilding('Gymnasium')">🏀<br>Gymnasium</button>
+    </div>
+    <div class="campus-info">
+      <h2 id="buildingName">Select a building</h2>
+      <p id="buildingDescription">Click a building on the campus map.</p>
+      <button onclick="askAboutBuilding()">Ask LLCIA</button>
+    </div>
+  </div>
+</section>
+
+<!-- Chatbot -->
+<div id="chatbot" class="chatbot">
+  <div class="chat-header">
+    <div class="title-block">
+      🤖 <b>LLCIA</b>
+      <small>LLCC Information Assistant</small>
+    </div>
+    <div class="header-actions">
+      <button class="clear-btn" onclick="clearChat()">Clear</button>
+      <button onclick="closeChat()">×</button>
+    </div>
+  </div>
+  <div id="chatMessages" class="chat-messages">
+    <div class="bot-message">
+      👋 Hi! I'm LLCIA. You can ask me about:
+      <br /><br />
+      • Courses & majors
+      <br />• Admission & transferee requirements
+      <br />• Scholarship
+      <br />• Enrollment & graduation
+      <br />• Student organizations
+      <br />• Events
+      <br />• Offices
+      <br />• Documents & forms
+      <br />• Academic calendar
+    </div>
+  </div>
+  <div id="chatSuggestions" class="chat-suggestions">
+    <span class="chip" onclick="askBot('What courses are available?')">Courses</span>
+    <span class="chip" onclick="askBot('What are the offices?')">Offices</span>
+    <span class="chip" onclick="askBot('What are the enrollment requirements?')">Enrollment</span>
+    <span class="chip" onclick="askBot('What organizations are available?')">Organizations</span>
+  </div>
+  <div class="chat-input">
+    <input type="text" id="chatInput" placeholder="Ask about LLCC..." onkeypress="enterChat(event)" />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+<button id="chatButton" class="chat-button" onclick="openChat()">🤖</button>
+
+<!-- Footer -->
+<footer>
+  <h3>LLCIA</h3>
+  <p>Lapu-Lapu City College Information Assistant</p>
+  <p>Your LLCC Information, One Question Away.</p>
+  <div class="footer-links">
+    <a href="#courses">Courses</a>
+    <a href="#organizations">Organizations</a>
+    <a href="#events">Events</a>
+    <a href="#offices">Offices</a>
+    <a href="#documents">Documents</a>
+    <a href="#calendar">Calendar</a>
+    <a href="#faq">FAQ</a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
+
